@@ -3,12 +3,11 @@ import re
 import collections
 # -*- coding: UTF-8 -*-
 
-mes=input("")
+mes=input()
+tel=""
+name=""
 tel=re.search(r'(\d{11})', mes).group()
 mes_notel=re.sub(r'(\d{11})',"", mes)
-
-name=""
-tel=""
 
 name=re.search(r'(.+?),', mes_notel).group()
 name_num=re.search(r'(\d)', name).group()
