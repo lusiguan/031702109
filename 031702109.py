@@ -8,8 +8,9 @@ tel=re.search(r'(\d{11})', mes).group()
 mes_notel=re.sub(r'(\d{11})',"", mes)
 
 name=re.search(r'(.+?),', mes_notel).group()
+name_num=re.search(r'(\d)', name).group()
+name=name.replace(name_num,"")
 name=name.replace(',',"")
-name=name.replace('\d',"")
 name=name.replace('!',"")
 
 mes_addr=re.sub(r'(.+?),',"", mes_notel)
@@ -61,5 +62,3 @@ dictionary["手机:"]=tel
 dictionary["地址:"]=mes_new_addr
 js=json.dumps(dictionary,ensure_ascii=False)
 print(js)
-
-
