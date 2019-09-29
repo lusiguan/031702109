@@ -9,20 +9,22 @@ mes_notel=re.sub(r'(\d{11})',"", mes)
 
 name=re.search(r'(.+?),', mes_notel).group()
 name=name.replace(',',"")
+name=name.replace('\d',"")
+name=name.replace('!',"")
 
 mes_addr=re.sub(r'(.+?),',"", mes_notel)
 
 province=re.search(r'(.+?省)|(.+?自治区)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)', mes_addr)
 if province != None :
     province=re.search(r'(.+?省)|(.+?自治区)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)', mes_addr).group()
-    mes_two_addr=re.sub(r'(.+?省)|(.+?自治区)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)',"",mes_addr)
+    mes_two_addr=re.sub(r'(.+?省)|(.+?自治区)',"",mes_addr)
 else:
     mes_two_addr=mes_addr
 
-city=re.search(r'(.+?市)', mes_two_addr)
+city=re.search(r'(.+?市)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)', mes_two_addr)
 if city != None :
-    city=re.search(r'(.+?市)', mes_two_addr).group()
-    mes_three_addr=re.sub(r'(.+?市)',"", mes_two_addr)
+    city=re.search(r'(.+?市)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)', mes_two_addr).group()
+    mes_three_addr=re.sub(r'(.+?市)|(.*?北京)|(.*?上海)|(.*?天津)|(.*?重庆)',"", mes_two_addr)
 else :
     mes_three_addr=mes_two_addr
 
@@ -59,6 +61,5 @@ dictionary["手机:"]=tel
 dictionary["地址:"]=mes_new_addr
 js=json.dumps(dictionary,ensure_ascii=False)
 print(js)
-
 
 
