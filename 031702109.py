@@ -3,7 +3,7 @@ import re
 import collections
 # -*- coding: UTF-8 -*-
 
-mes=input("message:")
+mes=input("")
 tel=re.search(r'(\d{11})', mes).group()
 mes_notel=re.sub(r'(\d{11})',"", mes)
 
