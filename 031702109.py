@@ -7,6 +7,9 @@ mes=input("message:")
 tel=re.search(r'(\d{11})', mes).group()
 mes_notel=re.sub(r'(\d{11})',"", mes)
 
+name=""
+tel=""
+
 name=re.search(r'(.+?),', mes_notel).group()
 name_num=re.search(r'(\d)', name).group()
 name=name.replace(name_num,"")
@@ -57,8 +60,13 @@ if home != None :
 
 mes_new_addr=mes_new_addr.split(" ")
 dictionary=collections.OrderedDict()
-dictionary["姓名:"]=name
-dictionary["手机:"]=tel
-dictionary["地址:"]=mes_new_addr
+dictionary["姓名"]=name
+dictionary["手机"]=tel
+dictionary["地址"]=mes_new_addr
+
 js=json.dumps(dictionary,ensure_ascii=False)
+
 print(js)
+
+
+
