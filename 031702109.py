@@ -38,24 +38,59 @@ if county != None :
 else :
     mes_four_addr=mes_three_addr
 
-stress=re.search(r'(.+?街)|(.+?街道)|(.+?苏木)|(.+?民族苏木)|(.+?镇)|(.+?乡)', mes_four_addr)
+stress=re.search(r'(.+?苏木)|(.+?民族苏木)|(.+?镇)|(.+?乡)', mes_four_addr)
 if stress != None :
-    stress=re.search(r'(.+?街)|(.+?镇)|(.+?乡)|(.+?街道)|(.+?苏木)|(.+?民族苏木)', mes_four_addr).group()
-    home=re.sub(r'(.+?街)|(.+?镇)|(.+?乡)|(.+?街道)|(.+?苏木)|(.+?民族苏木)',"", mes_four_addr)
-    home=home.replace('.',"")
+    stress=re.search(r'(.+?镇)|(.+?乡)|(.+?苏木)|(.+?民族苏木)', mes_four_addr).group()
+    mes_five_addr=re.sub(r'(.+?镇)|(.+?乡)|(.+?苏木)|(.+?民族苏木)',"", mes_four_addr)
 else :
-    home=None
+    mes_five_addr=mes_four_addr
+
+road=re.search(r'(.+?路)|(.+?巷)|(.+?街)|(.+?街道)', mes_five_addr)
+if road != None :
+    road=re.search(r'(.+?路)|(.+?巷)|(.+?街)|(.+?街道)', mes_five_addr).group()
+    mes_six_addr=re.sub(r'(.+?路)|(.+?巷)|(.+?街)|(.+?街道)',"", mes_five_addr)
+else :
+    mes_six_addr=mes_five_addr
+
+num=re.search(r'(.+?号)', mes_six_addr)
+if num != None :
+    num=re.search(r'(.+?号)', mes_six_addr).group()
+    num=num.replace('.',"")
+else :
+    num=None
 
 if province != None :
     mes_new_addr=province
+else :
+    province=""
+    mes_new_addr=province
+
 if city != None :
     mes_new_addr=mes_new_addr+' '+city
+else:
+    city=""
+    mes_new_addr=mes_new_addr+' '+city
+
 if county != None :
     mes_new_addr=mes_new_addr+' '+county
+else:
+    county=""
+    mes_new_addr=mes_new_addr+' '+county
+
 if stress != None :
     mes_new_addr=mes_new_addr+' '+stress
-if home != None :
-    mes_new_addr=mes_new_addr+' '+home
+else:
+    stress=""
+    mes_new_addr=mes_new_addr+' '+stress
+
+if road != None :
+    mes_new_addr=mes_new_addr+' '+road
+else:
+    road=""
+    mes_new_addr=mes_new_addr+' '+road
+
+if num != None :
+    mes_new_addr=mes_new_addr+' '+num
 
 mes_new_addr=mes_new_addr.split(" ")
 dictionary=collections.OrderedDict()
