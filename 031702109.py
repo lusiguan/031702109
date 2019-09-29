@@ -3,9 +3,9 @@ import re
 import collections
 # -*- coding: UTF-8 -*-
 
-mes=input()
-tel=""
 name=""
+tel=""
+mes=input()
 tel=re.search(r'(\d{11})', mes).group()
 mes_notel=re.sub(r'(\d{11})',"", mes)
 
@@ -44,7 +44,7 @@ if stress != None :
     home=re.sub(r'(.+?街)|(.+?镇)|(.+?乡)|(.+?街道)|(.+?苏木)|(.+?民族苏木)',"", mes_four_addr)
     home=home.replace('.',"")
 else :
-    home=mes_four_addr
+    home=None
 
 if province != None :
     mes_new_addr=province
