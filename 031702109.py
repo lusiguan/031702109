@@ -31,17 +31,17 @@ if city != None :
 else :
     mes_three_addr=mes_two_addr
 
-county=re.search(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)', mes_three_addr)
+county=re.search(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)|(.+?旗)|(.+?自治旗)|(.+?林区)', mes_three_addr)
 if county != None :
-    county=re.search(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)', mes_three_addr).group()
-    mes_four_addr=re.sub(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)',"", mes_three_addr)
+    county=re.search(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)|(.+?旗)|(.+?自治旗)|(.+?林区)', mes_three_addr).group()
+    mes_four_addr=re.sub(r'(.+?区)|(.+?自治州)|(.+?自治县)|(.+?县)|(.+?旗)|(.+?自治旗)|(.+?林区)',"", mes_three_addr)
 else :
     mes_four_addr=mes_three_addr
 
-stress=re.search(r'(.+?街)|(.+?镇)|(.+?乡)', mes_four_addr)
+stress=re.search(r'(.+?街)|(.+?街道)|(.+?苏木)|(.+?民族苏木)|(.+?镇)|(.+?乡)', mes_four_addr)
 if stress != None :
-    stress=re.search(r'(.+?街)|(.+?镇)|(.+?乡)', mes_four_addr).group()
-    home=re.sub(r'(.+?街)|(.+?镇)|(.+?乡)',"", mes_four_addr)
+    stress=re.search(r'(.+?街)|(.+?镇)|(.+?乡)|(.+?街道)|(.+?苏木)|(.+?民族苏木)', mes_four_addr).group()
+    home=re.sub(r'(.+?街)|(.+?镇)|(.+?乡)|(.+?街道)|(.+?苏木)|(.+?民族苏木)',"", mes_four_addr)
     home=home.replace('.',"")
 else :
     home=mes_four_addr
